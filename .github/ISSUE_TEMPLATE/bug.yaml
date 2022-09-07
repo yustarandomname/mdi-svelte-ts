@@ -1,0 +1,53 @@
+name: Bug Report
+description: File a bug report
+title: '[Bug]: <title>'
+labels: [Bug", 'Needs triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report 😀!
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: 'Please write down in steps to reproduce the bug.'
+      placeholder: Tell us what you see!
+      value: |
+        1. I ran `yarn install`
+        2. then, I ran `yarn build`
+    validations:
+      required: true
+  - type: textarea
+    id: what-is-solution
+    attributes:
+      label: How to possibly resolve this issue?
+      description: 'Please write down in steps to resolve the bug.'
+      placeholder: Tell us how to possibly solve this!
+    validations:
+      required: false
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: What browsers are you seeing the problem on?
+      multiple: true
+      options:
+        - All (Browser is not relevant)
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+        - Other
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+  - type: checkboxes
+    attributes:
+      label: "Added a relevant title, assignee, label, project and milestone"
+      description: "Validate that you have added the possible assignee, label, project and milestone."
+      options:
+        - label: I have double checked this issue. Thanks for contributing! 🎉
+          required: true

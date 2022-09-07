@@ -1,0 +1,45 @@
+name: Feature request
+description: Write down a interesting feature that should be implemented
+title: "[Feature]: <title>"
+labels: ["Feature", "Needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Make sure there are no duplicate feature requests.
+        If you have a good reason to request a feature, please do so.
+  - type: textarea
+    id: brief-description
+    attributes:
+      label: Brief description?
+      description: "Please write a short description of the feature. (2-5 sentences)"
+      placeholder: Adding feature `X` to the project would be a good idea. Because...
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-implement
+    attributes:
+      label: (sub-)steps to implement
+      description: "Please write down a checklist to implement the feature."
+      placeholder: "Checklist to implement the feature."
+      value: |
+        - [ ] Create ...
+        - [ ] Add ...
+        - [ ] Test ...
+    validations:
+      required: true
+  - type: textarea
+    id: inspiration
+    attributes:
+      label: Inspiration
+      description: "Please insert any relevant inspiration. Forinstance: photos, videos, links to resources, ..."
+      placeholder: "You can drag and drop files here."
+  - type: checkboxes
+    attributes:
+      label: "This is not a duplicate"
+      description: "Please make sure this feature request is not a duplicate of an existing feature request. Furthermore, check if it does not contain spelling mistakes and has a clear descriptive title."
+      options:
+        - label: This issue has a descriptive title
+          required: true
+        - label: I agree this is not a duplicate issue. Thanks for contributing! 🎉
+          required: true
