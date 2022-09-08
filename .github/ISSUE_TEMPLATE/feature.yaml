@@ -1,7 +1,7 @@
 name: Feature request
 description: Write down a interesting feature that should be implemented
-title: "[Feature]: <title>"
-labels: ["Feature", "Needs triage"]
+title: '[Feature]: <title>'
+labels: ['Feature', 'Needs triage']
 body:
   - type: markdown
     attributes:
@@ -12,7 +12,7 @@ body:
     id: brief-description
     attributes:
       label: Brief description?
-      description: "Please write a short description of the feature. (2-5 sentences)"
+      description: 'Please write a short description of the feature. (2-5 sentences)'
       placeholder: Adding feature `X` to the project would be a good idea. Because...
     validations:
       required: true
@@ -20,8 +20,8 @@ body:
     id: steps-to-implement
     attributes:
       label: (sub-)steps to implement
-      description: "Please write down a checklist to implement the feature."
-      placeholder: "Checklist to implement the feature."
+      description: 'Please write down a checklist to implement the feature.'
+      placeholder: 'Checklist to implement the feature.'
       value: |
         - [ ] Create ...
         - [ ] Add ...
@@ -32,12 +32,12 @@ body:
     id: inspiration
     attributes:
       label: Inspiration
-      description: "Please insert any relevant inspiration. Forinstance: photos, videos, links to resources, ..."
-      placeholder: "You can drag and drop files here."
+      description: 'Please insert any relevant inspiration. Forinstance: photos, videos, links to resources, ...'
+      placeholder: 'You can drag and drop files here.'
   - type: checkboxes
     attributes:
-      label: "This is not a duplicate"
-      description: "Please make sure this feature request is not a duplicate of an existing feature request. Furthermore, check if it does not contain spelling mistakes and has a clear descriptive title."
+      label: 'This is not a duplicate'
+      description: 'Please make sure this feature request is not a duplicate of an existing feature request. Furthermore, check if it does not contain spelling mistakes and has a clear descriptive title.'
       options:
         - label: This issue has a descriptive title
           required: true

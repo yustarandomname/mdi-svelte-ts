@@ -1,9 +1,9 @@
 <script lang="ts">
 	export let path: string;
 	export let size = 1;
-	export let color: string = 'currentColor';
-	export let flipV: boolean = false;
-	export let flipH: boolean = false;
+	export let color = 'currentColor';
+	export let flipV = false;
+	export let flipH = false;
 	export let rotate = 0;
 	export let spin = 0;
 	export let title = '';

@@ -46,8 +46,8 @@ body:
       render: shell
   - type: checkboxes
     attributes:
-      label: "Added a relevant title, assignee, label, project and milestone"
-      description: "Validate that you have added the possible assignee, label, project and milestone."
+      label: 'Added a relevant title, assignee, label, project and milestone'
+      description: 'Validate that you have added the possible assignee, label, project and milestone.'
       options:
         - label: I have double checked this issue. Thanks for contributing! 🎉
           required: true
