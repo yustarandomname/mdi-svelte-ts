@@ -8,9 +8,11 @@
 	];
 </script>
 
-<nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded-b dark:bg-gray-900">
+<nav
+	class="fixed z-10 w-full top-0 bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded-b dark:bg-gray-900"
+>
 	<div class="container flex flex-wrap justify-between items-center mx-auto">
-		<a href="https://flowbite.com/" class="flex items-center">
+		<a href="/" class="flex items-center">
 			<!-- <img
 				src="https://flowbite.com/docs/images/logo.svg"
 				class="mr-3 h-6 sm:h-9"
@@ -63,6 +65,10 @@
 		</div>
 	</div>
 </nav>
+
+<div class="pt-12">
+	<slot />
+</div>
 
 <style>
 	.selected {

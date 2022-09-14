@@ -2,10 +2,9 @@
 	import { onMount } from 'svelte';
 	import Icon from '$lib/Icon.svelte';
 	import LazyLoad from '$lib/LazyLoad.svelte';
-	import { mdiMagnify } from '@mdi/js';
+	import Input from '$lib/Input.svelte';
 
 	let page = 1;
-
 	let mdiIcons: [string, string][] = [];
 	let searchQuery = '';
 
@@ -13,36 +12,21 @@
 		name.toLowerCase().includes(searchQuery.toLowerCase())
 	);
 
-	function handleChange() {
-		page = 1;
-	}
-
 	onMount(async () => {
 		const mdi = await import('@mdi/js');
 
-		const entries = Object.entries(mdi) as [string, string][];
-
-		mdiIcons = entries;
+		mdiIcons = Object.entries(mdi) as [string, string][];
 	});
 </script>
 
-<div class="container">
-	<div class="control has-icons-right">
-		<input
-			class="input is-focused"
-			type="text"
-			placeholder="Search icon"
-			bind:value={searchQuery}
-			on:keyup={handleChange}
-		/>
-		<span class="icon is-right">
-			<Icon path={mdiMagnify} size={1.5} />
-		</span>
-	</div>
+<div class="fixed bottom-4 right-4 w-[30rem]">
+	<Input bind:value={searchQuery} on:keyup={() => (page = 1)} />
 
-	<div class="icons">
+	<div class="icons grid gap-4 max-h-80 my-4 overflow-x-auto">
 		<LazyLoad items={searchedIcons} bind:page let:item={[name, path]} let:index>
-			<div class="iconItem">
+			<div
+				class="flex flex-col items-center gap-2 text-sm bg-slate-100 hover:bg-slate-50 px-2 py-4 rounded transition-colors cursor-pointer"
+			>
 				<Icon {path} size={2.5} />
 				<p>{index}: {name}</p>
 			</div>
@@ -51,59 +35,7 @@
 </div>
 
 <style>
-	.container {
-		position: fixed;
-		bottom: 1rem;
-		right: 1rem;
-		height: 20rem;
-		width: 30rem;
-		overflow: auto;
-	}
-
 	.icons {
-		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
-		grid-gap: 1rem;
-		padding: 1rem;
-	}
-
-	.iconItem:nth-child(1),
-	.iconItem:nth-child(2) {
-		margin-top: 3rem;
-	}
-
-	.iconItem {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.5rem;
-		font-size: 0.8rem;
-		background: rgb(235, 238, 246);
-		padding: 1rem 0.5rem;
-		border-radius: 0.5rem;
-		scale: 1;
-		transition: all 0.2s;
-		cursor: pointer;
-	}
-
-	.iconItem > p {
-		text-align: center;
-		width: 100%;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-	}
-
-	.iconItem:hover {
-		background: rgb(241, 243, 247);
-		scale: 1.1;
-	}
-
-	/* Search field */
-	.control {
-		width: 30rem;
-		position: fixed;
-		margin-bottom: 0.5rem;
-		z-index: 2;
 	}
 </style>
