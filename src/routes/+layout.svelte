@@ -1,5 +1,6 @@
 <script>
-	import '$lib/bulma/css/bulma.css';
+	import '../app.css';
+
 	import NavBar from './NavBar.svelte';
 </script>
 

@@ -8,6 +8,7 @@
 
 	let mdiIcons: [string, string][] = [];
 	let searchQuery = '';
+
 	$: searchedIcons = mdiIcons.filter(([name]) =>
 		name.toLowerCase().includes(searchQuery.toLowerCase())
 	);
@@ -25,36 +26,50 @@
 	});
 </script>
 
-<div class="control has-icons-right">
-	<input
-		class="input is-focused"
-		type="text"
-		placeholder="Search icon"
-		bind:value={searchQuery}
-		on:keyup={handleChange}
-	/>
-	<span class="icon is-right">
-		<Icon path={mdiMagnify} size={1.5} />
-	</span>
-</div>
+<div class="container">
+	<div class="control has-icons-right">
+		<input
+			class="input is-focused"
+			type="text"
+			placeholder="Search icon"
+			bind:value={searchQuery}
+			on:keyup={handleChange}
+		/>
+		<span class="icon is-right">
+			<Icon path={mdiMagnify} size={1.5} />
+		</span>
+	</div>
 
-<div class="icons">
-	<LazyLoad items={searchedIcons} bind:page let:item={[name, path]} let:index>
-		<div class="iconItem">
-			<Icon {path} size={2.5} />
-			<p>{index}: {name}</p>
-		</div>
-	</LazyLoad>
+	<div class="icons">
+		<LazyLoad items={searchedIcons} bind:page let:item={[name, path]} let:index>
+			<div class="iconItem">
+				<Icon {path} size={2.5} />
+				<p>{index}: {name}</p>
+			</div>
+		</LazyLoad>
+	</div>
 </div>
 
 <style>
+	.container {
+		position: fixed;
+		bottom: 1rem;
+		right: 1rem;
+		height: 20rem;
+		width: 30rem;
+		overflow: auto;
+	}
+
 	.icons {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
 		grid-gap: 1rem;
 		padding: 1rem;
-		max-width: 70rem;
-		margin: 1rem auto;
+	}
+
+	.iconItem:nth-child(1),
+	.iconItem:nth-child(2) {
+		margin-top: 3rem;
 	}
 
 	.iconItem {
@@ -86,7 +101,9 @@
 
 	/* Search field */
 	.control {
-		max-width: 70rem;
-		margin: 1rem auto;
+		width: 30rem;
+		position: fixed;
+		margin-bottom: 0.5rem;
+		z-index: 2;
 	}
 </style>
