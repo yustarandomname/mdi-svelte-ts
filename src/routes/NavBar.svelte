@@ -70,8 +70,8 @@
 	<slot />
 </div>
 
-<style>
+<style lang="postcss">
 	.selected {
-		@apply text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white;
+		@apply text-white bg-blue-700 rounded md:bg-transparent dark:md:text-blue-200 md:text-blue-700 md:p-0 dark:text-white;
 	}
 </style>

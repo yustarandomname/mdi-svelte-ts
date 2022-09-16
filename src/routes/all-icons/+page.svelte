@@ -12,6 +12,11 @@
 		name.toLowerCase().includes(searchQuery.toLowerCase())
 	);
 
+	function writeToClipboard(name: string) {
+		const str = `<Icon path={${name}} />`;
+		navigator.clipboard.writeText(str);
+	}
+
 	onMount(async () => {
 		const mdi = await import('@mdi/js');
 
@@ -25,6 +30,7 @@
 	<div class="icons grid gap-4 my-4">
 		<LazyLoad items={searchedIcons} bind:page let:item={[name, path]} let:index>
 			<div
+				on:click={() => writeToClipboard(name)}
 				class="flex flex-col items-center gap-2 text-sm bg-slate-100 hover:bg-slate-50 px-2 py-4 rounded transition-colors cursor-pointer truncate"
 			>
 				<Icon {path} size={2.5} />
