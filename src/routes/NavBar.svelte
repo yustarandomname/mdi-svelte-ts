@@ -66,7 +66,7 @@
 	</div>
 </nav>
 
-<div class="pt-12">
+<div class="pt-20">
 	<slot />
 </div>
 
