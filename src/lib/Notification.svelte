@@ -32,13 +32,22 @@
 </script>
 
 {#if message}
-	<div
-		class="fixed bottom-4 right-4 rounded bg-slate-900 p-2 z-50 cursor-pointer text-slate-100"
-		on:click={hideMessage}
-		transition:fade
-	>
+	<div class="notification" on:click={hideMessage} transition:fade>
 		{message}
 	</div>
 {/if}
 
 <slot {writeMessage} />
+
+<style>
+	.notification {
+		display: fixed;
+		bottom: 1rem;
+		right: 1rem;
+		background-color: rgb(15, 23, 42);
+		padding-inline: 0.5rem;
+		z-index: 1111;
+		color: rgb(241, 245, 249);
+		border-radius: 0.25rem;
+	}
+</style>

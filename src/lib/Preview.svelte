@@ -2,10 +2,10 @@
 	import { onMount } from 'svelte';
 	import Fuse from 'fuse.js';
 
-	import Icon from '$lib/Icon.svelte';
-	import LazyLoad from '$lib/LazyLoad.svelte';
-	import Input from '$lib/Input.svelte';
-	import Notification from '$lib/Notification.svelte';
+	import Icon from './Icon.svelte';
+	import LazyLoad from './LazyLoad.svelte';
+	import Input from './Input.svelte';
+	import Notification from './Notification.svelte';
 	import { mdiMagnify } from '@mdi/js';
 
 	interface NamePath {
@@ -41,6 +41,7 @@
 
 		page = 1;
 
+		// TODO: debounce
 		if (searchQuery == '') {
 			defaultSearch();
 		} else {
@@ -58,20 +59,19 @@
 	});
 </script>
 
-{page}
 <Notification let:writeMessage>
-	<div class="fixed bottom-4 right-4 w-[30rem]">
+	<div class="container">
 		<Input bind:value={searchQuery} on:keyup={handleKeyup}>
-			<span class="flex gap-2 items-center">
+			<span class="searchBar">
 				<span>{searchedIcons.length} icons</span>
 				<Icon path={mdiMagnify} size={1.5} />
 			</span>
 		</Input>
 
-		<div class="icons grid gap-4 max-h-80 my-4 overflow-x-auto">
+		<div class="icons">
 			<LazyLoad items={searchedIcons} bind:page let:item let:index>
 				<div
-					class="flex flex-col items-center gap-2 text-sm bg-slate-100 hover:bg-slate-50 px-2 py-4 rounded transition-colors cursor-pointer"
+					class="icon"
 					on:click={() => {
 						writeToClipboard(item.item.name);
 						writeMessage(`Copied ${item.item.name} to clipboard!`);
@@ -85,8 +85,44 @@
 	</div>
 </Notification>
 
-<style>
+<style lang="postcss">
+	.container {
+		position: fixed;
+		bottom: 1rem;
+		right: 1rem;
+		width: 30rem;
+	}
+
+	.searchBar {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+	}
+
 	.icons {
+		display: grid;
+		gap: 1rem;
+		max-height: 20rem;
+		margin-inline: 1rem;
+		overflow-x: hidden;
+		overflow-y: auto;
 		grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+	}
+
+	.icon {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.8rem;
+		background-color: rgb(241, 245, 249);
+		padding: 0.5rem 1rem;
+		border-radius: 0.25rem;
+		transition: background-color 0.2s ease;
+		cursor: pointer;
+	}
+
+	.icon:hover {
+		background-color: rgb(248, 250, 252);
 	}
 </style>
