@@ -3,12 +3,12 @@
 	import Fuse from 'fuse.js';
 	import { mdiMagnify } from '@mdi/js';
 
-	import Icon from '$lib/Icon.svelte';
-	import LazyLoad from '$lib/LazyLoad.svelte';
-	import Input from '$lib/Input.svelte';
-	import Notification from '$lib/Notification.svelte';
+	import Icon from './Icon.svelte';
+	import LazyLoad from './LazyLoad.svelte';
+	import Input from './Input.svelte';
+	import Notification from './Notification.svelte';
 
-	import debounce from '$lib/debounce';
+	import debounce from './debounce';
 
 	interface NamePath {
 		name: string;
@@ -70,27 +70,27 @@
 </script>
 
 <Notification let:writeMessage>
-	<div class="container mx-auto p-4 my-12 max-w-6xl">
+	<div class="container">
 		<Input bind:value={searchQuery} on:keyup={handleKeyup}>
-			<span class="flex gap-2 items-center">
+			<span class="searchBar">
 				<span>{searchedIcons.length} icons</span>
 				<Icon path={mdiMagnify} size={1.5} />
 			</span>
 		</Input>
 
-		<div class="mt-1 text-sm text-gray-400">Click on an icon to copy to clipboard</div>
+		<div class="help">Click on an icon to copy to clipboard</div>
 
-		<div class="icons grid gap-4 my-4">
+		<div class="icons">
 			<LazyLoad items={searchedIcons} bind:page let:item let:index>
 				<div
-					class="flex flex-col items-center gap-2 text-sm bg-slate-100 hover:bg-slate-50 px-2 py-4 rounded transition-colors cursor-pointer truncate"
+					class="icon"
 					on:click={() => {
 						writeToClipboard(item.item.name);
 						writeMessage(`Copied ${item.item.name} to clipboard!`);
 					}}
 				>
 					<Icon path={item.item.path} size={2.5} />
-					<p class="w-full py-2 text-center">{index}: {item.item.name}</p>
+					<p>{index}: {item.item.name}</p>
 				</div>
 			</LazyLoad>
 		</div>
@@ -98,7 +98,49 @@
 </Notification>
 
 <style lang="postcss">
+	.container {
+		position: fixed;
+		bottom: 1rem;
+		right: 1rem;
+		width: 30rem;
+	}
+
+	.searchBar {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+	}
+
+	.help {
+		margin-top: 0.25rem;
+		font-size: 0.8rem;
+		color: rgb(125, 125, 125);
+	}
+
 	.icons {
+		display: grid;
+		gap: 1rem;
+		max-height: 20rem;
+		margin-block: 1rem;
+		overflow-x: hidden;
+		overflow-y: auto;
 		grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+	}
+
+	.icon {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.8rem;
+		background-color: rgb(241, 245, 249);
+		padding: 1rem 0.5rem;
+		border-radius: 0.5rem;
+		transition: background-color 0.2s ease;
+		cursor: pointer;
+	}
+
+	.icon:hover {
+		background-color: rgb(248, 250, 252);
 	}
 </style>
