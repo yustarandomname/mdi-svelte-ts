@@ -20,6 +20,8 @@
 		display: grid;
 		grid-template: 'container';
 		width: 100%;
+		border: 2px solid rgb(51, 65, 85);
+		border-radius: 0.25rem;
 	}
 
 	input {

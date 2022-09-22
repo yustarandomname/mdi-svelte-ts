@@ -41,11 +41,11 @@
 
 <style>
 	.notification {
-		display: fixed;
+		position: fixed;
 		bottom: 1rem;
 		right: 1rem;
+		padding: 0.5rem 0.75rem;
 		background-color: rgb(15, 23, 42);
-		padding-inline: 0.5rem;
 		z-index: 1111;
 		color: rgb(241, 245, 249);
 		border-radius: 0.25rem;
